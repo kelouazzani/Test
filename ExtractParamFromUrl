@@ -1,0 +1,14 @@
+public Dictionary<string, string> GetParams(string uri)
+        {
+            var queryDictionary = new Dictionary<string, string>();
+            if (Uri.IsWellFormedUriString(uri, UriKind.Absolute))
+            {
+                var Uri = new Uri(uri);           
+                NameValueCollection queryParams = System.Web.HttpUtility.ParseQueryString(Uri.Query);                
+                foreach (string key in queryParams.AllKeys)
+                {
+                    queryDictionary[key] = queryParams[key];
+                }
+            }
+            return queryDictionary;
+      }
